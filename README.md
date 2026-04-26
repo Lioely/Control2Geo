@@ -5,4 +5,4 @@ We propose Control2Geo, a diffusion-based model for monocular geometry estimatio
 
 ![这是图片](/figure/c2geo_figure.png){:height="50%" width="50%"}
 
-![这是图片](/figure/inference.png){:height="50%" width="50%"}
+![这是图片](/figure/c2geo_inference.png){:height="50%" width="50%"}
