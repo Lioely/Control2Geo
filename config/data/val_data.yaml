@@ -1,0 +1,15 @@
+dataset_list: ["NYUv2","KITTI"]
+NYUv2: 
+    path: "data/split/NYUv2.csv"
+    width: 640
+    height: 480
+    depth_unit: 1.0
+    resize_shape: [640,480]
+    depth_range: [1e-5,10.0]
+KITTI: 
+    path: "data/split/KITTI.csv"
+    width: 750
+    height: 375
+    depth_unit: 1
+    resize_shape: [768,384]
+    depth_range: [1e-5,80.0]
