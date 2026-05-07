@@ -1,0 +1,25 @@
+# Install torch stack separately if using CUDA 12.8:
+# pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+xformers==0.0.30
+numpy
+pillow
+pandas
+matplotlib
+omegaconf
+scipy
+trimesh
+huggingface_hub
+opencv-python
+einops
+taming-transformers
+pytorch_lightning
+tensorboard
+tqdm
+h5py
+OpenEXR
+Imath
+imageio
+safetensors
+timm
+
+git+https://github.com/EasternJournalist/utils3d.git@3fab839f0be9931dac7c8488eb0e1600c236e183

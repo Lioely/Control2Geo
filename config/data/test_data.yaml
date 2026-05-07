@@ -1,0 +1,76 @@
+dataset_list: ["NYUv2","KITTI","ETH3D","iBims-1","GSO",
+                "Sintel","DDAD","DIODE","Spring"]
+
+NYUv2: 
+    path: "data/split/NYUv2.csv"
+    width: 640
+    height: 480
+    depth_unit: 1.0
+    depth_range: [1e-5,10]
+    resize_shape: [640,480]
+KITTI: 
+    path: "data/split/KITTI.csv"
+    width: 768
+    height: 384
+    depth_unit: 1
+    depth_range: [1e-5,80]
+    resize_shape: [768,384]
+ETH3D: 
+    path: "data/split/ETH3D.csv"
+    width: 640
+    height: 480
+    depth_unit: 1
+    depth_range: [1e-5,80]
+    resize_shape: [640,480]
+iBims-1:
+    path: "data/split/iBims-1.csv"
+    width: 640
+    height: 480
+    has_sharp_boundary: true
+    depth_range: [1e-5,80]
+    resize_shape: [640,480]
+    depth_unit: 1.0
+GSO: 
+    path: "data/split/GSO.csv"
+    width: 512
+    height: 512
+    resize_shape: [512,512]
+    depth_range: [1e-5,80]
+    depth_unit: 1.0
+Sintel: 
+    path: "data/split/Sintel.csv"
+    width: 768
+    height: 384
+    resize_shape: [768,384]
+    depth_range: [1e-5,80]
+    has_sharp_boundary: true
+DDAD:
+    path: "data/split/DDAD.csv"
+    width: 768
+    height: 384
+    resize_shape: [768,384]
+    depth_range: [1e-5,80]
+    include_segmentation: true
+    depth_unit: 1.0
+DIODE:
+    path: "data/split/DIODE.csv"
+    width: 640
+    height: 480
+    resize_shape: [640,480]
+    depth_range: [0.6,350]
+    depth_unit: 1.0
+Spring:
+    path: "data/split/Spring.csv"
+    width: 640
+    height: 480
+    resize_shape: [640,480]
+    depth_range: [1e-5,80]
+    has_sharp_boundary: true
+HAMMER:
+    path: "data/split/HAMMER.csv"
+    width: 769
+    height: 384
+    depth_unit: 1
+    resize_shape: [768,384]
+    depth_range: [1e-5,80]
+    has_sharp_boundary: true

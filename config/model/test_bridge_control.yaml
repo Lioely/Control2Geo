@@ -1,0 +1,99 @@
+#for training xo pred v loss concat normal and af pc
+#we use sd15+controlnet
+model:
+  target: model.diffusion_bridge.cldbm_point_latent_control.ControlLDBM
+  params:
+    timesteps: 1000
+    scale_factor: 0.18215
+    learning_rate: 1.0e-4
+    use_scheduler: True
+    ckpt_path: 'model.pth'
+    ignore_keys: []
+    text_prompt_path: 'checkpoint/empty_prompt768.npy'
+    model_config:
+      target: model.diffusion_unet.control_net_latent_control.ControlledUnetModel
+      params:
+        in_channels: 8 #double z + 4
+        out_channels: 4
+        model_channels: 320
+        attention_resolutions: [4, 2, 1 ]
+        num_res_blocks: 2
+        channel_mult: [ 1, 2, 4, 4 ]
+        num_head_channels: 64 # need to fix for flash-attn
+        use_spatial_transformer: True
+        #use_linear_in_transformer: True
+        transformer_depth: 1
+        context_dim: 768
+        use_checkpoint: True
+        legacy: False
+
+    first_stage_config:
+        target: model.diffusion_unet.latentcoder.autoencoder.AutoencoderKL
+        params:
+          embed_dim: 4
+          monitor: val/rec_loss
+          ddconfig:
+            double_z: true
+            z_channels: 4
+            resolution: 256
+            in_channels: 3
+            out_ch: 3
+            ch: 128
+            ch_mult:
+            - 1
+            - 2
+            - 4
+            - 4
+            num_res_blocks: 2
+            attn_resolutions: []
+            dropout: 0.0
+          lossconfig:
+            target: torch.nn.Identity
+
+    point_first_stage_config:
+        target: model.diffusion_unet.latentcoder.autoencoder.AutoencoderKL
+        params:
+          embed_dim: 4
+          monitor: val/rec_loss
+          ddconfig:
+            double_z: true
+            z_channels: 4
+            resolution: 256
+            in_channels: 3
+            out_ch: 3
+            ch: 128
+            ch_mult:
+            - 1
+            - 2
+            - 4
+            - 4
+            num_res_blocks: 2
+            attn_resolutions: []
+            dropout: 0.0
+          lossconfig:
+            target: torch.nn.Identity
+
+    control_stage_config:
+      target: model.diffusion_unet.control_net_latent_control.ControlNet
+      params:
+        in_channels: 4
+        hint_channels: 3
+        model_channels: 320
+        attention_resolutions: [ 4, 2, 1 ]
+        num_res_blocks: 2
+        channel_mult: [ 1, 2, 4, 4 ]
+        num_heads: 8
+        use_spatial_transformer: True
+        transformer_depth: 1
+        context_dim: 768
+        use_checkpoint: True
+        legacy: False
+            
+    scheduler_config:
+      target: model.diffusion_bridge.lr_scheduler.LambdaLinearScheduler
+      params:
+        warm_up_steps: [ 100 ]
+        cycle_lengths: [ 10000000000000 ] # incredibly large number to prevent corner cases
+        f_start: [ 1.e-6 ]
+        f_max: [ 1. ]
+        f_min: [ 1. ]
