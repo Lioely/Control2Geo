@@ -1,0 +1,24 @@
+dataset_list: ["hypersim","vkitti"]
+mix_prod: [1.0]
+hypersim:
+  ori_size: [1024,768]
+  tgt_size: [640,480]
+  seed: 2025
+  focal: [886.81,665.1]
+  path: "data/split/hypersim.csv"
+  depth_range: [1000,1e-5,65.0] #[scale to meters, min_depth, max_depth]
+  center_augmentation: 0.25
+  fov_range_absolute: [40, 80]
+  fov_range_relative: [0.5, 1.0]
+  image_augmentation: ["jittering", "jpeg_loss", "blurring", "shot_noise"]
+vkitti:
+  ori_size: [1242,375]
+  tgt_size: [768,384]
+  focal: [725.0087,725.0087]
+  seed: 2025
+  path: "data/split/vkitti.csv"
+  depth_range: [100,1e-5,200.0] #[scale to meters, min_depth, max_depth]
+  center_augmentation: 0.25
+  fov_range_absolute: [45, 55]
+  fov_range_relative: [0.9, 1.0]
+  image_augmentation: ["jittering", "jpeg_loss", "blurring", "shot_noise"]
