@@ -59,7 +59,7 @@ class Hypersim_Dataset(Dataset):
                                 self.IMG_HEIGHT,
                                 self.focal[0],
                                 depth)
-        depth = depth/1000.0
+        depth = depth
         depth_mask = np.logical_and((depth >= self.min_depth), (depth <= self.max_depth)).astype(np.bool_)
 
         normal = read_data(normal_path)
