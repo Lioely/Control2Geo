@@ -1,5 +1,5 @@
 dataset_list: ["hypersim","vkitti"]
-mix_prod: [1.0]
+mix_prod: [0.7,0.3]
 hypersim:
   ori_size: [1024,768]
   tgt_size: [640,480]
